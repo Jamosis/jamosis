@@ -1,0 +1,337 @@
+<!DOCTYPE html><html lang="en" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0"><title>《Java多线程编程核心技术》总结 | Jamos</title><meta name="author" content="Jamos"><meta name="copyright" content="Jamos"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="第一章.Java多线程技能1.进程与线程的概念：进程是一个程序及其数据在CPU上顺序执行所发生的活动，简而言之，就是一段程序的执行过程。其主要特征有四点： 1.动态性，即上述所说的执行过程，它是动态创建，动态消亡的。 2.并发性：进程与进程是相互并行运行的，任何进程都可以与其他进程同时执行 3.独立性：进程是一个能够独立运行的基本单位，是系统分配资源和调度的基本单位（进程与线程的区别） 4.异步性">
+<meta property="og:type" content="article">
+<meta property="og:title" content="《Java多线程编程核心技术》总结">
+<meta property="og:url" content="http://example.com/2023/03/08/%E6%80%BB%E7%BB%93/index.html">
+<meta property="og:site_name" content="Jamos">
+<meta property="og:description" content="第一章.Java多线程技能1.进程与线程的概念：进程是一个程序及其数据在CPU上顺序执行所发生的活动，简而言之，就是一段程序的执行过程。其主要特征有四点： 1.动态性，即上述所说的执行过程，它是动态创建，动态消亡的。 2.并发性：进程与进程是相互并行运行的，任何进程都可以与其他进程同时执行 3.独立性：进程是一个能够独立运行的基本单位，是系统分配资源和调度的基本单位（进程与线程的区别） 4.异步性">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://cdn.staticaly.com/gh/Jamosis/jamosis@master/img/%E8%87%AA%E7%94%B1.jpg">
+<meta property="article:published_time" content="2023-03-08T06:00:00.000Z">
+<meta property="article:modified_time" content="2023-05-22T05:42:05.647Z">
+<meta property="article:author" content="Jamos">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://cdn.staticaly.com/gh/Jamosis/jamosis@master/img/%E8%87%AA%E7%94%B1.jpg"><link rel="shortcut icon" href="https://cdn.staticaly.com/gh/Jamosis/jamosis@master/img/头像副本.jpg"><link rel="canonical" href="http://example.com/2023/03/08/%E6%80%BB%E7%BB%93/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: 'Copy successfully',
+    error: 'Copy error',
+    noSupport: 'The browser does not support'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: 'days',
+  date_suffix: {
+    just: 'Just',
+    min: 'minutes ago',
+    hour: 'hours ago',
+    day: 'days ago',
+    month: 'months ago'
+  },
+  copyright: {"limitCount":50,"languages":{"author":"Author: Jamos","link":"Link: ","source":"Source: Jamos","info":"Copyright is owned by the author. For commercial reprints, please contact the author for authorization. For non-commercial reprints, please indicate the source."}},
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  source: {
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  }
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '《Java多线程编程核心技术》总结',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: false,
+  postUpdate: '2023-05-22 13:42:05'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+    win.getCSS = (url,id = false) => new Promise((resolve, reject) => {
+      const link = document.createElement('link')
+      link.rel = 'stylesheet'
+      link.href = url
+      if (id) link.id = id
+      link.onerror = reject
+      link.onload = link.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        link.onload = link.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(link)
+    })
+  
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><link rel="stylesheet" href="/css/custom.css"><link rel="stylesheet" href="/css/universe.css"><link rel="stylesheet" href="/css/cat.css"><div id="myscoll"></div><meta name="generator" content="Hexo 6.3.0"></head><body><div id="web_bg"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="https://cdn.staticaly.com/gh/Jamosis/jamosis@master/img/头像副本.jpg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">Articles</div><div class="length-num">5</div></a><a href="/tags/"><div class="headline">Tags</div><div class="length-num">0</div></a><a href="/categories/"><div class="headline">Categories</div><div class="length-num">1</div></a></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 主页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> Tags</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> Categories</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-list"></i><span> List</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" target="_blank" rel="noopener" href="https://music.wangjiexian.xyz/"><i class="fa-fw fas fa-music"></i><span> Music</span></a></li><li><a class="site-page child" href="/movies/"><i class="fa-fw fas fa-video"></i><span> Movie</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> Link</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 贤宝</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('https://cdn.staticaly.com/gh/Jamosis/jamosis@master/img/自由.jpg')"><nav id="nav"><span id="blog-info"><a href="/" title="Jamos"><span class="site-name">Jamos</span></a></span><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 主页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> Tags</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> Categories</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-list"></i><span> List</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" target="_blank" rel="noopener" href="https://music.wangjiexian.xyz/"><i class="fa-fw fas fa-music"></i><span> Music</span></a></li><li><a class="site-page child" href="/movies/"><i class="fa-fw fas fa-video"></i><span> Movie</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> Link</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 贤宝</span></a></div></div><div id="toggle-menu"><a class="site-page" href="javascript:void(0);"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">《Java多线程编程核心技术》总结</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">Created</span><time class="post-meta-date-created" datetime="2023-03-08T06:00:00.000Z" title="Created 2023-03-08 14:00:00">2023-03-08</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">Updated</span><time class="post-meta-date-updated" datetime="2023-05-22T05:42:05.647Z" title="Updated 2023-05-22 13:42:05">2023-05-22</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E6%95%99%E7%A8%8B/">教程</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="《Java多线程编程核心技术》总结"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">Post View:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><p>第一章.Java多线程技能<br>1.进程与线程的概念：进程是一个程序及其数据在CPU上顺序执行所发生的活动，简而言之，就是一段程序的执行过程。其主要特征有四点：</p>
+<p>1.动态性，即上述所说的执行过程，它是动态创建，动态消亡的。</p>
+<p>2.并发性：进程与进程是相互并行运行的，任何进程都可以与其他进程同时执行</p>
+<p>3.独立性：进程是一个能够独立运行的基本单位，是系统分配资源和调度的基本单位（进程与线程的区别）</p>
+<p>4.异步性：由于系统内各种因素的影响，使得进程的运行具有不确定性。各自都以独立的，不可预知的速度运行。</p>
+<p>而线程则是进程中独立运行的子任务，一个进程中的所有线程共享进程中的资源，但是独自使用CPU进行运算。也是CPU调度的基本单位。线程的引进使得系统的运行效率大大提升。</p>
+<p>2.创建线程的方法</p>
+<p>1.继承Thread类</p>
+<pre><code>即创建一个新类，该类继承Thread类，并重写父类的run方法，run方法中执行自己需要的任务。再在主线程中new出该新类，new完之后再使用start方法，即启动了一个新的线程。
+</code></pre>
+<p>2.实现Runnable接口</p>
+<pre><code>即创建一个新类，该类实现Runnable接口，并实现接口中的run方法，同样，run方法中执行自己需要的任务。再在主线程中new出一个Thread类的实例，并将该新类作为参数传入进去，并调用该实例的start方法，即启动了一个新的线程。
+</code></pre>
+<p>其一、两者的区别就是一个是继承，一个实现，并且第一个方法直接实例化自己创建的新类就行，但是第二个方法必须将自己创建的类作为参数传入Thread类的实例中，才能得到线程。这主要的目的是满足Java只能单继承的特性。如果你想将某一个类作为线程启动，但是该类具有其父类，那么就不能再继承Thread类了，所以就可以用Runnable接口来实现。</p>
+<p>其二、start方法和run方法的区别，线程实例直接调用run方法实质上是创建该线程的父线程在运行它的run方法，它自己并没有启动，而调用start方法则是该线程自己先启动，再自动运行自己的run方法。本质上是谁在运行run方法中的内容，是自己还是父线程。</p>
+<p>3.基本的方法及其注意事项</p>
+<p>1）Thread.currentThread(); 返回代码段正被调用的线程信息，比如当前正在运行的线程名等。常用</p>
+<p>2）isAlive(); 判断线程的活动状态，是否存活。</p>
+<p>3）sleep()；令当前线程休眠，休眠时不放弃自己拥有的锁</p>
+<p>4）getId();  获得当前线程的id</p>
+<ol start="5">
+<li>interrupt();  中断线程，注意！并非直接停止线程，而是给线程打上中断的一个印记，可与isInterrupt()【不擦除标记】 &#x2F; interrupted()【擦除标记】配合使用，并使用return、break、异常等配合使用使得线程中断。例：</li>
+</ol>
+<p>public class MyThread extends Thread{</p>
+<pre><code>private Object InterruptedException;
+
+@Override
+public void run() &#123;
+    System.out.println(&quot;线程启动&quot;);
+    while(true)&#123;
+</code></pre>
+<p>&#x2F;&#x2F;            if(interrupted()){<br>&#x2F;&#x2F;                System.out.println(“被打上中断标记,但此通过运行isInterrupted方法后中断标记擦除”);<br>&#x2F;&#x2F;            }<br>            if(isInterrupted()){<br>                System.out.println(“被打上中断标记，通过此方法可以退出循环，但是如果不执行任何动作，则线程还是继续运行”);<br>            }<br>            if(isInterrupted()){<br>                System.out.println(“被打上中断标记，通过break结束程序运行”);<br>                break;<br>            }<br>        }<br>    }<br>}</p>
+<p>public class Run {<br>    public static void main(String[] args) throws InterruptedException {<br>     MyThread myThread &#x3D; new MyThread();<br>     myThread.start();<br>     Thread.sleep(2000);<br>     System.out.println(Thread.currentThread().getName() + “ 运行interrupt方法”);<br>     myThread.interrupt();<br>    }<br>}</p>
+<p>6）stop();  强制停止线程，引起线程不安全，已禁用</p>
+<p>7）suspend() &#x2F; resume();  暂停&#x2F;恢复线程</p>
+<p>8）yield();  放弃cpu执行权，仅一次</p>
+<p>9）setPriority() &#x2F; getPriority();  设置优先级，获取优先级，规则性，随机性，1~10</p>
+<p>10）setDaemon(); 设置守护线程</p>
+<p>第二章.对象及变量的并发访问<br>1.非线程安全存在于实例变量中，方法中的变量永远是线程安全的。</p>
+<p>2.关键字synchronized所取的锁是对象锁，同一时间同一对象，其他线程只能处于等待状态。</p>
+<p>3.只有共享资源才需要同步化，非共享资源没必要同步化。</p>
+<p>4.一个对象一个锁，锁住该对象内所有用synchroniezd修饰的方法以及synchronized(this)修饰的代码块。</p>
+<p>5.拥有某对象锁的线程可以继续申请该对象的其他锁，即为锁重入，也可以在继承中获取锁。</p>
+<p>6.一旦某个线程陷入异常，会自动释放其拥有的锁。</p>
+<p>7.锁不可被继承，这和继承中可以获取锁是两个概念，需要区分清楚</p>
+<p>8.synchronized方法是对当前的对象加锁，synchronized代码块是对某个对象加锁。</p>
+<p>9.synchronized加到静态方法中是对类加锁，加到非静态方法中是对对象加锁，对类加锁时，那么该类的实例都持有一把共享锁，对对象加锁时，那么该类的实例各自都有自己的锁。</p>
+<p>10.synchronized(this) &#x3D;&#x3D; synchronized static </p>
+<p>11.因为有常量池的存在，一般不用字符串类型的实例作为锁，因为会重复。</p>
+<p>12.内置类的实例化：PrivateClass privateClass &#x3D; PublicClass.new PrivateClass();</p>
+<pre><code> 静态内置类则可以直接实例化
+</code></pre>
+<p>13.多个线程同时拥有相同的锁对象才能实现同步，在持有锁的期间锁对象改变则无法实现同步，只有对象本身改变才能改变锁对象，对象内容改变没有影响</p>
+<p>14.关键字volatile的作用是强制线程从公用堆栈中获取变量的值，使变量可见。</p>
+<p>15.volatile只支持可见性，不支持原子性，是线程同步的轻量级实现。</p>
+<pre><code> volatile与synchronized异同：
+</code></pre>
+<p>volatile	synchronized<br>只修饰变量	可修饰方法与代码块<br>性能高	性能低<br>不会阻塞	<br>会阻塞</p>
+<p>只有可见性	可见性（间接）+原子性</p>
+<p>volatile是强制线程从公用堆栈中获取变量的值，而synchronized是让公用堆栈和私用堆栈变量同步，从而达到一致。</p>
+<p>16.原子类实现 i++ 的原子操作：AtomicInteger类、AtmoicLong类等。</p>
+<p>17.互斥性+可见性，synchronized不仅可以解决一个线程看到对象处于不一致的状态，还可以保证进入同步方法或同步代码块的每一个线程都看到由同一个锁保护之前所有的修改结果。</p>
+<p>第三章.线程间通信<br>1.第一种方法：while轮询，A线程执行时，B线程用while死循环不断对A的状态进行询问捕捉，当遇见A的状态合乎条件的时候，则执行相应的动作。此方法单次循环的时间短的话，极大的浪费CPU的资源，单次循环的时间长的话，可能捕捉不到相应的状态。</p>
+<p>2.第二种方法：等待&#x2F;唤醒机制，wait(),notify()均为Object类的方法，即每一个对象实例都有这两个方法，但是必须在同步区域【同步代码块或同步方法】中使用，由相应的锁对象调用，wait()时放弃锁，进入阻塞队列，当被notify()唤醒时进入就绪队列，等待唤醒线程执行notify()方法并且本线程执行完毕之后，才能继续从wait处继续执行。</p>
+<p>3.notifyAll()，唤醒全部等待线程，根据优先级或随机获取锁继续执行，由JVM决定</p>
+<p>4.当线程处于wait状态时遇见Interrupt会出现异常</p>
+<p>5.释放锁的条件：1）执行完同步区域的代码，2）遇见异常，3）进入wait状态</p>
+<p>6.wait(long):等待一段时间，如果在时间段内被唤醒则继续执行，否则等时间到了则自动唤醒</p>
+<p>7.wait条件发生变化容易造成逻辑混乱，通常解决方法为将if语句变为while循环，不断的判断是否符合wait条件。</p>
+<p>8.假死：唤醒的线程不对，将notify变为notifyAll，唤醒全部等待线程</p>
+<p>9.第三种方法：通过管道进行通信，一个线程对管道写数据，一个通过管道读数据。</p>
+<p>字节流：PipeOutPutStream  PipeInPutStream</p>
+<p>字符流：PipeWriter  PipeReader</p>
+<p>10.第四种方法：join(),等待被等待的线程销毁后再执行，类似同步，达到线程通信的效果</p>
+<p>11.join和Interrupt遇见会出现异常</p>
+<p>12.join(long).被等待的线程执行后一段时间再执行</p>
+<p>13.ThreadLocal 让每个线程绑定自己的值，具有隔离性</p>
+<p>14.ThreadLocalExit 设定初始值</p>
+<p>15.InheritableThreadLocal 让子类线程继承父类的值，修改父类的值</p>
+<p>16.由阻塞进入运行的条件：</p>
+<pre><code> 1）sleep时间结束
+
+ 2）wait时被notify唤醒
+
+ 3）阻塞式IO执行完毕
+
+ 4）由挂起状态恢复
+
+ 5）获得锁
+
+由运行进入阻塞的条件：
+
+  1）进入sleep状态
+
+  2）进入wait状态
+
+  3）进入阻塞式IO
+
+  4）进入挂起状态
+
+  5）没有获得锁
+</code></pre>
+<p>第四章.Lock的使用<br>1.JDK1.5之后增加了ReentrantLock类，达到Synchronized同样的效果并且扩展了相应的功能。</p>
+<p>2.ReentrantLock类的lock与unlock方法 &#x3D;&#x3D; Synchronized修饰区</p>
+<p>3.Condition类中的await() &#x3D;&#x3D; wait(),signal() &#x3D;&#x3D; notify(), signalAll &#x3D;&#x3D; noitfyAll();</p>
+<p>4.Condition类中可以划分为多个组，分别进行等待和唤醒</p>
+<p>5.公平锁：FIFO模式，先运行的线程先获得锁，非公平锁：随机获得锁，利用ReentrantLock(isFair)进行设置</p>
+<p>6.getHoldCount():查询当前线程保持某锁的个数 </p>
+<p>   getQueueLength():等待获得某锁的线程数 </p>
+<p>   getWaitQueueLength():返回该锁内的等待线程数。</p>
+<p>7.hasQueueThread():查询指定线程是否在等待锁 </p>
+<p>   hasQueueThreads():查询是否有线程在等待此锁 </p>
+<p>   hasWaiters():查询是否有处于等待此锁的线程</p>
+<p>8.isFair():判断是否为公平锁还是非公平锁 </p>
+<p>   isHeldByCurrentThread():查询当前线程是否保持此锁定 </p>
+<p>   isLocked():判断此锁是否被任意线程保持</p>
+<p>9.lockInterruptibly():如果当前线程未中断，则获取锁定，否则，出现异常 </p>
+<p>   tryLock():仅在调用时锁定未被其他线程保持时才获取</p>
+<p>   tryLock(long timeout timeUnit unit):如果锁定在给定时间内未被其他线程保持且本身未中断，则获取锁</p>
+<p>10.awaitUniterruptibly():使等待可以遇见中断，不出异常</p>
+<p>11.awaitUntil():在某段时间内没有被唤醒则自动唤醒，类似wait(long)</p>
+<p>12.ReentrantReadWriterLock:读写锁，读读锁不互斥，可以异步进行，其他【写写、读写、写读】均为互斥，只能同步，提高只读线程的效率。</p>
+<p>第五章.定时器Timer<br>1.定时器Timer类：设置计划任务；TimerTask类：装载任务，需要创建新类并继承TimerTask类，例：</p>
+<p>import java.util.Date;<br>import java.util.TimerTask;</p>
+<p>public class MyTask extends TimerTask {<br>    @Override<br>    public void run() {<br>        System.out.println(“执行MyTask任务，time &#x3D; “ + new Date());<br>    }<br>}</p>
+<p>import java.util.Calendar;<br>import java.util.Date;<br>import java.util.Timer;</p>
+<p>public class Run {<br>    public static void main(String[] args) throws InterruptedException {<br>        System.out.println(“当前时间为:” + new Date());</p>
+<pre><code>    Calendar calendarRef = Calendar.getInstance();
+    calendarRef.add(Calendar.SECOND,20);
+    //设置运行时间为二十秒之后
+
+    Date date = calendarRef.getTime();
+    System.out.println(&quot;任务执行时间为:&quot; + date);
+
+    MyTask myTask = new MyTask();
+    Timer timer = new Timer();
+    timer.schedule(myTask,date);
+&#125;
+</code></pre>
+<p>}</p>
+<p>2.执行时间晚于当前，未来执行；执行时间早于当前，立即执行</p>
+<p>3.多个任务时，以队列式一个一个相继依次执行，若前一个任务消耗时间大于相隔时间，则后面任务会拖后，不在预期时间内执行，但也会依次执行，相隔时间会发生变化</p>
+<p>4.schedule(TimerTask task,Date date,long Period):按指定时间间隔，无限循环执行</p>
+<p>5.TimerTask类的cancel，将该任务从任务队列清除；Timer类的cancel，将整个任务队列清空</p>
+<p>6.schedule(TimerTask task,long delay) 延迟执行</p>
+<p>7.scheduleAtFixedRate相比于Schedule拥有追赶特性，即若预期时间早于当前，会补偿性执行几次任务</p>
+<p>第六章.单例模式与多线程<br>1.饿汉模式：立即加载，在方法调用前，已经创建了实例</p>
+<p>2.懒汉模式：延迟加载，在方法调用时再创建实例</p>
+<p>3.饿汉模式会出现非线程安全问题，不能有其他实例变量</p>
+<p>4.懒汉模式在多线程情况下会出现多个实例，违反规则，原因为if造成的逻辑混乱</p>
+<p>5.解决方式：1）在方法上加锁，效率降低 2）DCL双检查锁机制：即只锁在获取实例上，但外再加一个if判断实例是否存在，高效</p>
+<p>6.可以使用静置内部类和静态代码块实现单例模式中的饿汉模式</p>
+<p>7.在单例模式的序列化与反序列化中应使用readResolve（）方法保证单例</p>
+<p>8.可以使用枚举类实现单例模式，但涉及到数据库中的jdbc操作，较复杂</p>
+<p>第七章.拾遗增补<br>1.线程的状态：</p>
+<pre><code>NEW:线程实例化后还未执行start()方法
+
+RUNNABLE：运行状态
+
+TERMINATED：销毁状态
+
+TIMED_WAITING:等待状态
+
+BLOCKED：等待锁状态
+</code></pre>
+<p>2.线程组可以批量管理对象，进行有效的组织，线程组中可以有线程，线程对象以及线程组</p>
+<p>3.1级关联：父对象有子对象，但不创建子孙对象，开发常用，对零散的对象进行有效的组织</p>
+<p>   多级关联：父对象中有子对象，子对象可以创建孙对象，过于复杂，开发不常用</p>
+<p>4.实例化一个线程组时如果不显式指定组，会隐式的划到当前线程所在的组</p>
+<p>5.获取线程组的内容：</p>
+<p>public class Run {<br>    public static void main(String[] args) throws InterruptedException {<br>        ThreadGroup group &#x3D; new ThreadGroup(“线程组A”);<br>        MyThread myThread &#x3D; new MyThread(group,”线程A”);<br>        MyThread myThread1 &#x3D; new MyThread(group,”线程B”);<br>        myThread.start();<br>        myThread1.start();</p>
+<pre><code>    //获取线程组中的线程
+    Thread[] groups = new Thread[myThread.currentThread().getThreadGroup().activeCount()];
+    myThread.currentThread().getThreadGroup().enumerate(groups);
+    
+    //获取线程组中的线程组
+    ThreadGroup[] groups1 = new ThreadGroup[myThread.currentThread().getThreadGroup().activeGroupCount()];
+    myThread.currentThread().getThreadGroup().enumerate(groups1);
+    
+    //遍历获取信息
+    for(int i = 0; i &lt; groups.length; i++)&#123;
+        System.out.println(groups[i].getName());
+    &#125;
+&#125;
+</code></pre>
+<p>}</p>
+<p>6.线程组的根为system，再向上追溯则会出现空异常</p>
+<p>7.SimpleDateFormat 主要负责日期的转换与格式化，在多线程环境中，不是线程安全的</p>
+<p>8.UncaughtExceptionHandler  ：可以对线程的异常进行处理</p>
+<p>9.SetUncaughtExceptionHandler  ：可以对指定线程对象设置默认的异常处理器</p>
+<p>10.setDefaultUncaughtExceptionHandler：可以对指定线程类的所有对象设置异常处理器</p>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">Author: </span><span class="post-copyright-info"><a href="http://example.com">Jamos</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">Link: </span><span class="post-copyright-info"><a href="http://example.com/2023/03/08/%E6%80%BB%E7%BB%93/">http://example.com/2023/03/08/%E6%80%BB%E7%BB%93/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">Copyright Notice: </span><span class="post-copyright-info">All articles in this blog are licensed under <a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a> unless stating additionally.</span></div></div><div class="tag_share"><div class="post-meta__tag-list"></div><div class="post_share"><div class="social-share" data-image="https://cdn.staticaly.com/gh/Jamosis/jamosis@master/img/自由.jpg" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/2023/03/08/Jamos/" title="优秀导师推荐"><img class="cover" src="https://cdn.staticaly.com/gh/Jamosis/jamosis@master/img/优秀.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of previous post"><div class="pagination-info"><div class="label">Previous Post</div><div class="prev_info">优秀导师推荐</div></div></a></div><div class="next-post pull-right"><a href="/2023/03/07/hello/" title="你好"><img class="cover" src="https://cdn.staticaly.com/gh/Jamosis/jamosis@master/img/你好.png" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">Next Post</div><div class="next_info">你好</div></div></a></div></nav></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="https://cdn.staticaly.com/gh/Jamosis/jamosis@master/img/头像副本.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">Jamos</div><div class="author-info__description"></div></div><div class="card-info-data site-data is-center"><a href="/archives/"><div class="headline">Articles</div><div class="length-num">5</div></a><a href="/tags/"><div class="headline">Tags</div><div class="length-num">0</div></a><a href="/categories/"><div class="headline">Categories</div><div class="length-num">1</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/xxxxxx"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons is-center"><a class="social-icon" href="https://github.com/Jamosis" target="_blank" title="Github"><i class="fab fa-github"></i></a><a class="social-icon" href="mailto:1987540196@qq.com" target="_blank" title="Email"><i class="fas fa-envelope"></i></a><a class="social-icon" href="https://cdn.staticaly.com/gh/Jamosis/jamosis@master/img/微信名片副本.jpg" target="_blank" title="Wechat"><i class="fa-weixin fa-brands"></i></a><a class="social-icon" href="https://cdn.staticaly.com/gh/Jamosis/jamosis@master/img/QQ名片副本.jpg" target="_blank" title="QQ"><i class="fa-qq fa-brands"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>Announcement</span></div><div class="announcement_content">This is my Blog</div></div><div class="sticky_layout"><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>Recent Post</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/2023/03/08/jj/" title="剪辑（初学者）"><img src="https://cdn.staticaly.com/gh/Jamosis/jamosis@master/img/剪辑.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="剪辑（初学者）"/></a><div class="content"><a class="title" href="/2023/03/08/jj/" title="剪辑（初学者）">剪辑（初学者）</a><time datetime="2023-03-08T06:34:00.000Z" title="Created 2023-03-08 14:34:00">2023-03-08</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2023/03/08/Jamos/" title="优秀导师推荐"><img src="https://cdn.staticaly.com/gh/Jamosis/jamosis@master/img/优秀.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="优秀导师推荐"/></a><div class="content"><a class="title" href="/2023/03/08/Jamos/" title="优秀导师推荐">优秀导师推荐</a><time datetime="2023-03-08T06:00:00.000Z" title="Created 2023-03-08 14:00:00">2023-03-08</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2023/03/08/%E6%80%BB%E7%BB%93/" title="《Java多线程编程核心技术》总结"><img src="https://cdn.staticaly.com/gh/Jamosis/jamosis@master/img/自由.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="《Java多线程编程核心技术》总结"/></a><div class="content"><a class="title" href="/2023/03/08/%E6%80%BB%E7%BB%93/" title="《Java多线程编程核心技术》总结">《Java多线程编程核心技术》总结</a><time datetime="2023-03-08T06:00:00.000Z" title="Created 2023-03-08 14:00:00">2023-03-08</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2023/03/07/hello/" title="你好"><img src="https://cdn.staticaly.com/gh/Jamosis/jamosis@master/img/你好.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="你好"/></a><div class="content"><a class="title" href="/2023/03/07/hello/" title="你好">你好</a><time datetime="2023-03-07T06:25:00.000Z" title="Created 2023-03-07 14:25:00">2023-03-07</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2023/03/07/java/" title="( Java 突破程序员基本功的十六课 )"><img src="https://cdn.staticaly.com/gh/Jamosis/jamosis@master/img/勇气.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="( Java 突破程序员基本功的十六课 )"/></a><div class="content"><a class="title" href="/2023/03/07/java/" title="( Java 突破程序员基本功的十六课 )">( Java 突破程序员基本功的十六课 )</a><time datetime="2023-03-07T06:25:00.000Z" title="Created 2023-03-07 14:25:00">2023-03-07</time></div></div></div></div></div></div></main><footer id="footer" style="background-image: url('https://cdn.staticaly.com/gh/Jamosis/jamosis@master/img/自由.jpg')"><div id="footer-wrap"><div class="copyright">&copy;2023 By Jamos</div><div class="framework-info"><span>Framework </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>Theme </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div><div class="footer_custom_text"><a href="https://icp.gov.moe/?keyword=20231018" target="_blank"><img src="https://cdn.staticaly.com/gh/Jamosis/jamosis@master/img/萌ICP备-20231018-fe1384.svg"/></ a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="Read Mode"><i class="fas fa-book-open"></i></button><button id="hide-aside-btn" type="button" title="Toggle between single-column and double-column"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="Setting"><i class="fas fa-cog fa-spin"></i></button><button id="go-up" type="button" title="Back To Top"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.umd.min.js"></script><div class="js-pjax"></div><canvas id="universe"></canvas><script defer src="/js/universe.js"></script><div class="aplayer no-destroy" data-id="6762645899" data-server="netease" data-type="playlist" data-fixed="true" data-mini="true" data-listFolded="false" data-order="random" data-lrctype="1" data-preload="none" data-autoplay="true" muted></div><script defer src="https://npm.elemecdn.com/jquery@latest/dist/jquery.min.js"></script><script defer data-pjax src="/js/cat.js"></script><script defer="defer" id="fluttering_ribbon" mobile="true" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/canvas-fluttering-ribbon.min.js"></script><script id="click-heart" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/click-heart.min.js" async="async" mobile="false"></script><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.js"></script><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/metingjs/dist/Meting.min.js"></script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div><script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"log":false,"pluginJsPath":"lib/","pluginModelPath":"assets/","pluginRootPath":"live2dw/","tagMode":false});</script></body></html>
